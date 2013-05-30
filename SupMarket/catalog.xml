@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://supseller-paris.servme.fr:80/app/SalesExportService?wsdl" uri="src/conf/xml-resources/web-services/NewWebServiceFromWSDL/wsdl/supseller-paris.servme.fr_80/app/SalesExportService.wsdl"/>
+</catalog>

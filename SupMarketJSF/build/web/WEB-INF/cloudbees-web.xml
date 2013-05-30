@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<cloudbees-web-app> 
+    <appid>schatteleyn/supmarketjsf</appid>
+    <resource name="jdbc/supmarketjsf" auth="Container"
+    type="javax.sql.DataSource">
+        <param name="username" value="schatteleyn" /> 
+        <param name="password" value="supmarketjsf" /> 
+        <param name="url" value="jdbc:mysql://ec2-50-19-213-178.compute-1.amazonaws.com" />
+    </resource> 
+</cloudbees-web-app>

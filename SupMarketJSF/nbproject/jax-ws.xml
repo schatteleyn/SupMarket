@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
+  <services>
+    <service name="SoapApi">
+      <implementation-class>com.supinfo.supmarketjsf.api.SoapApi</implementation-class>
+      <wsdl-url>http://supseller-paris.servme.fr/app/SalesExportService?wsdl</wsdl-url>
+      <local-wsdl-file>supseller-paris.servme.fr/app/SalesExportService.wsdl</local-wsdl-file>
+      <service-name>SalesExportService</service-name>
+      <port-name>SalesExportPort</port-name>
+      <package-name>com.supsellers.us.sales.export</package-name>
+      <catalog-file>catalog.xml</catalog-file>
+      <use-provider>false</use-provider>
+      <wsimport-options>
+        <wsimport-option>
+          <wsimport-option-name>extension</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>verbose</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xnocompile</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xendorsed</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+      </wsimport-options>
+    </service>
+  </services>
+  <clients/>
+  <jsr109>true</jsr109>
+</jax-ws>

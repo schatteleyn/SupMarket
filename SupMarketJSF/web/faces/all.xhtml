@@ -1,0 +1,300 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <link href="../res/css/bootstrap.min.css" rel="stylesheet" media="screen"/>
+        <script language="javascript" type="text/javascript" src="../res/js/bootstrap.min.js"></script>
+        <style type="text/css">
+            body {
+                padding-bottom: 40px;
+                background-color: #f5f5f5;
+            }
+            .container {
+                background-color: white;
+                -webkit-border-radius: 5px;
+                -moz-border-radius: 5px;
+            }
+            a {
+                color: white;
+            }
+            .control-group {
+                text-align: center;
+            }
+            div.chart div {
+               margin-right: auto;
+               margin-left: auto;
+            }
+        </style>
+        <script language="javascript" type="text/javascript" src="../res/js/flot/jquery.js"></script>
+	<script language="javascript" type="text/javascript" src="../res/js/flot/jquery.flot.js"></script>
+        <script language="javascript" type="text/javascript" src="../res/js/flot/jquery.flot.pie.js"></script>
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript">
+            google.load('visualization', '1.0', {'packages':['corechart']});
+            google.setOnLoadCallback(drawChart);
+            function drawChart() {
+            var dataBest = new google.visualization.DataTable();
+                dataBest.addColumn('string', 'Name');
+                dataBest.addColumn('number', 'Number');
+                dataBest.addRows([
+                <ui:repeat  value="#{dashboardController.bestSelling}" var="sale">
+                    [ '#{sale[0].prodId.prodName}', #{sale[1]}],
+                </ui:repeat >
+                ]);
+                var options = {'title':'Best Sold Products', 'width':600,'height':500};
+                var chart = new google.visualization.PieChart(document.getElementById('test'));
+                chart.draw(dataBest, options);
+           }
+           </script>
+           <script type="text/javascript">
+              google.load('visualization', '1.0', {'packages':['corechart']});
+              google.setOnLoadCallback(drawChart);
+              function drawChart() { 
+              var dataChannel = new google.visualization.DataTable();
+              dataChannel.addColumn('string', 'Name');
+              dataChannel.addColumn('number', 'Number');
+              dataChannel.addRows([
+                      <ui:repeat  value="#{dashboardController.salesByChannels}" var="sale">
+                    ['#{sale[0].channelId.channelDesc}', #{sale[1]}],
+                </ui:repeat >
+                ]);
+            
+             var options = {'title':'Sales by channels', 'width':600,'height':500};
+                var chart = new google.visualization.PieChart(document.getElementById('channels'));
+                chart.draw(dataChannel, options);
+           }
+           </script>
+           <script type="text/javascript">
+              google.load('visualization', '1.0', {'packages':['corechart']});
+              google.setOnLoadCallback(drawChart);
+              function drawChart() { 
+              var dataCountry = new google.visualization.DataTable();
+              dataCountry.addColumn('string', 'Name');
+              dataCountry.addColumn('number', 'Number');
+              dataCountry.addRows([
+                <ui:repeat  value="#{dashboardController.salesByCountries}" var="sale">
+                    ['#{sale[0].prodId.prodName}', #{sale[1]}],
+                </ui:repeat >
+                ]);
+            
+              var options = {'title':'Sales by countries', 'width':600,'height':500};
+                var chart = new google.visualization.PieChart(document.getElementById('countries'));
+                chart.draw(dataCountry, options);
+           }
+           </script>
+           <script type="text/javascript">
+              google.load('visualization', '1.0', {'packages':['corechart']});
+              google.setOnLoadCallback(drawChart);
+              function drawChart() {   
+              var dataGender = new google.visualization.DataTable();
+              dataGender.addColumn('string', 'Gender');
+              dataGender.addColumn('number', 'Number');
+              dataGender.addRows([
+                <ui:repeat  value="#{dashboardController.salesByGenders}" var="sale">
+                    ['#{sale[0].custId.custGender}', #{sale[1]}],
+                </ui:repeat >
+                ]);
+            var options = {'title':'Sales by gender', 'width':600,'height':500};
+                var chart = new google.visualization.PieChart(document.getElementById('gender'));
+                chart.draw(dataGender, options);
+           }
+           </script>
+           <script type="text/javascript">
+              google.load('visualization', '1.0', {'packages':['corechart']});
+              google.setOnLoadCallback(drawChart);
+              function drawChart() {
+              var dataMarital = new google.visualization.DataTable();
+              dataMarital.addColumn('string', 'Name');
+              dataMarital.addColumn('number', 'Number');
+              dataMarital.addRows([
+                <ui:repeat  value="#{dashboardController.salesByStatus}" var="sale">
+                    ['#{sale[0].custId.custMaritalStatus}', #{sale[1]}],
+                </ui:repeat >
+                ]);
+            
+              var options = {'title':'Sales by marital status', 'width':600,'height':500};
+                var chart = new google.visualization.PieChart(document.getElementById('marital'));
+                chart.draw(dataMarital, options);
+           }
+           </script>
+           <script type="text/javascript">
+              google.load('visualization', '1.0', {'packages':['corechart']});
+              google.setOnLoadCallback(drawChart);
+              function drawChart() {
+              var dataIncome = new google.visualization.DataTable();
+              dataIncome.addColumn('string', 'Name');
+              dataIncome.addColumn('number', 'Number');
+              dataIncome.addRows([
+                <ui:repeat  value="#{dashboardController.salesByIncome}" var="sale">
+                    ['#{sale[0].custId.custIncomeLevel}', #{sale[1]}],
+                </ui:repeat >
+                ]);           
+            
+              var options = {'title':'Sales by income level', 'width':600,'height':500};
+                var chart = new google.visualization.PieChart(document.getElementById('income'));
+                chart.draw(dataIncome, options);
+           }
+        </script>
+        <title>Dashboard</title>
+    </h:head>
+    <h:body>
+        <div class="container">
+            
+            <div class="navbar navbar-inverse">
+            <div class="navbar-inner">
+              <a class="brand" href="#">SupMarket</a>
+              <h:form styleClass="navbar-form pull-right form-horizontal" prependId="false">
+                        <h:panelGroup rendered="#{empty userController.user.id}">
+                            <h:commandLink action="#{userController.authenticateUser}" value="Login"/>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{!empty userController.user.id}">
+                            <h:commandButton styleClass="btn" action="#{userController.logout()}" value="Logout"/>
+                        </h:panelGroup>
+              </h:form>
+            </div>
+          </div>
+        <div style="text-align: center;">
+              <div class="sold">
+                  <h4>Total Sales</h4>
+                    <h:outputText value="#{dashboardController.totalSale}" />
+                  
+                  <h4>Total Amount Sold</h4>
+                    <h:outputText value="#{dashboardController.totalAmountSold}" />
+              </div>
+              
+              <div class="soldProducts chart">
+                  <h4>Best and Worst sold products</h4>
+                  <div id="test"></div>
+                  <h:dataTable styleClass="table table-striped table-bordered" value="#{dashboardController.worstSelling}" var="sale">
+                      <h:column>
+                                <f:facet name="header">Worst Sold Product</f:facet>
+                                #{sale[0].prodId.prodName}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Quantity Sold</f:facet>
+                                #{sale[1]}
+                            </h:column>
+                  </h:dataTable>
+              </div>
+              <div id="channels" class="chart">
+                  <h4>Sales by channels</h4>
+              </div>
+              <div id="countries" class="chart">
+                  <h4>Sales by countries</h4>
+              </div>
+              <div>
+                  <h:dataTable styleClass="table table-striped table-bordered" value="#{dashboardController.salesByCountries}" var="sale">
+                      <h:column>
+                                <f:facet name="header">Country</f:facet>
+                                #{sale[0].custId.countryId.countryName}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Quantity Sold</f:facet>
+                                #{sale[1]}
+                            </h:column>
+                  </h:dataTable>
+              </div>
+              <div id="gender" class="chart"><h4>Sales by genders</h4></div>
+              <div id="marital" class="chart"><h4>Sales by marital status</h4></div>
+              <div id="income" class="chart"><h4>Sales by income level</h4></div>
+              <div>
+                    <h:dataTable styleClass="table table-striped table-bordered" value="#{dashboardController.salesByIncome}" var="sale">
+                      <h:column>
+                                <f:facet name="header">Product</f:facet>
+                                #{sale[0].custId.custIncomeLevel}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Quantity</f:facet>
+                                #{sale[1]}
+                            </h:column>
+                  </h:dataTable>
+              </div>
+              <div>
+                  <h4>Most loyal customers</h4>
+                    <h:dataTable  styleClass="table table-striped table-bordered" value="#{dashboardController.mostLoyal}" var="sale">
+                        <h:column>
+                            <f:facet name="header">Customer</f:facet>
+                            #{sale[0].custId.custFirstName} #{sale[0].custId.custLastName}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Quantity Sold</f:facet>
+                            #{sale[1]}
+                        </h:column>
+                    </h:dataTable>
+              </div>
+       </div>
+              
+        <div style="text-align: center;">
+                <h:form styleClass="filter form-horizontal " method="get">
+                    <div class="control-group">
+                    <h:selectOneMenu  name="country" value="#{dashboardController.country}">
+                            <f:selectItem itemValue="" itemLabel="-- Country --"/>
+                            <f:selectItem itemValue="52769" itemLabel="Singapore"/>
+                            <f:selectItem itemValue="52770" itemLabel="Italy"/>
+                            <f:selectItem itemValue="52771" itemLabel="China"/>
+                            <f:selectItem itemValue="52772" itemLabel="Canada"/>
+                            <f:selectItem itemValue="52773" itemLabel="Argentina"/>
+                            <f:selectItem itemValue="52774" itemLabel="Australia"/>
+                            <f:selectItem itemValue="52775" itemLabel="Brazil"/>
+                            <f:selectItem itemValue="52776" itemLabel="Germany"/>
+                            <f:selectItem itemValue="52777" itemLabel="Denmark"/>
+                            <f:selectItem itemValue="52778" itemLabel="Spain"/>
+                            <f:selectItem itemValue="52779" itemLabel="France"/>
+                            <f:selectItem itemValue="52782" itemLabel="Japan"/>
+                            <f:selectItem itemValue="52785" itemLabel="New Zealand"/>
+                            <f:selectItem itemValue="52786" itemLabel="Poland"/>
+                            <f:selectItem itemValue="52787" itemLabel="Saudi Arabia"/>
+                            <f:selectItem itemValue="52788" itemLabel="Turkey"/>
+                            <f:selectItem itemValue="52789" itemLabel="UK"/>
+                            <f:selectItem itemValue="52790" itemLabel="USA"/>
+                        </h:selectOneMenu >
+                    </div>
+                    <div class="control-group">
+                    <h:selectOneMenu name="gender" value="#{dashboardController.gender}">
+                            <f:selectItem itemValue="" itemLabel="-- Gender --"/>
+                            <f:selectItem itemValue="m" itemLabel="Male"/>
+                            <f:selectItem itemValue="f" itemLabel="Female"/>
+                    </h:selectOneMenu>
+                    </div>
+                    <div class="control-group">
+                    <h:selectOneMenu name="status" value="#{dashboardController.status}">
+                            <f:selectItem itemValue="" itemLabel="-- Marital Status --"/>
+                            <f:selectItem itemValue="Divorc." itemLabel="Divorc."/>
+                            <f:selectItem itemValue="divorced" itemLabel="divorced"/>
+                            <f:selectItem itemValue="Mabsent" itemLabel="Mabsent"/>
+                            <f:selectItem itemValue="Mar-AF" itemLabel="Mar-AF"/>
+                            <f:selectItem itemValue="married" itemLabel="married"/>
+                            <f:selectItem itemValue="NeverM" itemLabel="NeverM"/>
+                            <f:selectItem itemValue="Separ." itemLabel="Separ."/>
+                            <f:selectItem itemValue="single" itemLabel="single"/>
+                            <f:selectItem itemValue="widow" itemLabel="widow"/>
+                            <f:selectItem itemValue="Widowed" itemLabel="Widowed"/>
+                        </h:selectOneMenu>
+                    </div>
+                    <div class="control-group">
+                    <h:selectOneMenu name="income" value="#{dashboardController.income}">
+                            <f:selectItem itemValue="" itemLabel="-- Income Level --"/>
+                            <f:selectItem itemValue="A: Below 30,000" itemLabel="A: Below 30,000"/>
+                            <f:selectItem itemValue="B: 30,000 - 49,999" itemLabel="B: 30,000 - 49,999"/>
+                            <f:selectItem itemValue="C: 50,000 - 69,999" itemLabel="C: 50,000 - 69,999"/>
+                            <f:selectItem itemValue="D: 70,000 - 89,999" itemLabel="D: 70,000 - 89,999"/>
+                            <f:selectItem itemValue="E: 90,000 - 109,999" itemLabel="E: 90,000 - 109,999"/>
+                            <f:selectItem itemValue="F: 110,000 - 129,999" itemLabel="F: 110,000 - 129,999"/>
+                            <f:selectItem itemValue="G: 130,000 - 149,999" itemLabel="G: 130,000 - 149,999"/>
+                            <f:selectItem itemValue="H: 150,000 - 169,999" itemLabel="H: 150,000 - 169,999"/>
+                            <f:selectItem itemValue="I: 170,000 - 189,999" itemLabel="I: 170,000 - 189,999"/>
+                            <f:selectItem itemValue="J: 190,000 - 249,999" itemLabel="J: 190,000 - 249,999"/>
+                            <f:selectItem itemValue="K: 250,000 - 299,999" itemLabel="K: 250,000 - 299,999"/>
+                            <f:selectItem itemValue="L: 300,000 and above" itemLabel="L: 300,000 and above"/>
+                        </h:selectOneMenu>
+                        </div>
+                    <h:commandButton styleClass="btn" action="#{dashboardController}" type="submit" value="Filter"/>
+                </h:form>
+            </div>
+        </div>
+    </h:body>
+</html>
+
